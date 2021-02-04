@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Filter from './components/Filter';
+import RecordTable from './components/RecordTable';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  
+  constructor(props){
+    super(props);
+    this.state = {value: "name-checked"};   
+  }  
+  
+  render() {   
+    const setName = (e) => {          
+      this.setState({value: "name-checked"})        
+    }
+    
+    const setAge = (e) => {  
+      this.setState({value: "age-checked"})  
+    }
+    
+    return (
+      <div className="container-fluid">
+        <center><h1>Birthday Records</h1></center>
+        <Filter nameHandler = {setName} ageHandler = {setAge} ></Filter>
+        <RecordTable value = {this.state.value}></RecordTable>
+      </div>
+    );
+  }
 }
 
 export default App;
